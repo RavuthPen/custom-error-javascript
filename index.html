@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Message Error</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mdb.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="col-md-4 mt-5">
+    <h3>Log in</h3>
+    <input type="text" name="username" id="username" class="form-control" placeholder="user name">
+    <br>
+    <input type="text" name="password" id="password" class="form-control" placeholder="password">
+    <br>
+    <lable id="msg"></lable><br>
+    <button id="btn" class="btn btn-primary">Submit</button>
+</div>
+<script>
+
+    let usr = document.getElementById('username');
+    let pwd = document.getElementById('password');
+    let msg = document.getElementById('msg');
+    let bnt = document.getElementById('btn');
+    let colorText;
+    btn.onclick = function () {
+        try {
+            if(usr.value == "" && pwd.value == ""){
+                colorText = true
+                throw  'user name and password can not empty';
+            }
+            if(usr.value == "" || !isNaN(usr.value) || usr.value.length > 10 ){
+                colorText = true
+                throw 'user name incorrect please tray again !!';
+            }
+            if(pwd.value == "" || pwd.value.length < 5){
+                colorText = true
+                throw 'password incorrect please try again !!'
+            }
+            else{
+                colorText = false
+                throw 'Success !!';
+            }
+
+        }catch (e) {
+            console.log(e)
+            if (colorText == true) {
+                msg.innerHTML = e
+                msg.style.color = "red"
+            }else {
+                msg.innerHTML = e
+                msg.style.color = "green"
+            }
+        }
+    }
+</script>
+</body>
+</html>
